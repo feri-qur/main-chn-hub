@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资料整理志 · 爱游戏体育信息索引</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f2f2f2;
+            color: #2c2c2c;
+            line-height: 1.7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+        .page-wrap {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* hero 区域 — 杂志开篇横幅 */
+        .hero {
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.04);
+            padding: 3rem 2.5rem 2.5rem;
+            margin-bottom: 2.4rem;
+            border: 1px solid #e6e6e6;
+            position: relative;
+        }
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 450;
+            letter-spacing: -0.01em;
+            color: #1f1f1f;
+            border-left: 6px solid #6c7a89;
+            padding-left: 1.2rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        .hero .subhead {
+            font-size: 1.05rem;
+            color: #5e5e5e;
+            margin-top: 0.4rem;
+            padding-left: 1.8rem;
+            border-bottom: 1px dashed #d4d4d4;
+            padding-bottom: 0.9rem;
+        }
+        .hero .tagline {
+            margin-top: 1.2rem;
+            font-size: 0.95rem;
+            color: #4f4f4f;
+            background: #f8f8f8;
+            display: inline-block;
+            padding: 0.25rem 1.1rem;
+            border-radius: 40px;
+            border: 1px solid #e0e0e0;
+        }
+
+        /* 背景说明卡片 — 专题引言 */
+        .bg-note {
+            background: #fcfcfc;
+            padding: 1.8rem 2.2rem;
+            border-radius: 22px;
+            border: 1px solid #eaeaea;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .bg-note h2 {
+            font-size: 1.3rem;
+            font-weight: 450;
+            margin-bottom: 0.8rem;
+            color: #303030;
+            letter-spacing: 0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .bg-note h2::before {
+            content: "◈";
+            color: #8a9aa8;
+            font-size: 1.1rem;
+        }
+        .bg-note p {
+            color: #3e3e3e;
+            margin-bottom: 0.9rem;
+            font-size: 0.98rem;
+        }
+        .bg-note p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 三段自然介绍 — 卡片网格 */
+        .features-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin-bottom: 2.2rem;
+        }
+        .feature-card {
+            background: #ffffff;
+            flex: 1 1 240px;
+            border-radius: 24px;
+            padding: 1.8rem 1.6rem 1.6rem;
+            border: 1px solid #e3e3e3;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.02);
+            transition: box-shadow 0.2s;
+        }
+        .feature-card:hover {
+            box-shadow: 0 10px 24px rgba(0,0,0,0.04);
+        }
+        .feature-card h3 {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #2b2b2b;
+            margin-bottom: 0.7rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .feature-card h3 span {
+            font-size: 1.4rem;
+            margin-right: 0.2rem;
+        }
+        .feature-card p {
+            color: #444;
+            font-size: 0.94rem;
+            margin-bottom: 0.5rem;
+        }
+        .feature-card .meta {
+            font-size: 0.8rem;
+            color: #7a7a7a;
+            background: #f4f4f4;
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            margin-top: 0.2rem;
+        }
+
+        /* 索引摘要 / FAQ 小片段 */
+        .faq-mini {
+            background: #fafafa;
+            border-radius: 24px;
+            padding: 1.8rem 2.2rem;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            margin-bottom: 2rem;
+        }
+        .faq-mini h4 {
+            font-size: 1.1rem;
+            font-weight: 450;
+            margin-bottom: 1rem;
+            color: #2a2a2a;
+        }
+        .faq-mini .qa-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #ececec;
+        }
+        .faq-mini .qa-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        .faq-mini .q-label {
+            min-width: 4.2rem;
+            color: #6c7a89;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .faq-mini .a-text {
+            color: #3b3b3b;
+            font-size: 0.94rem;
+        }
+
+        /* 页尾访问提示 — 融入杂志式结语 */
+        .footer-note {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2rem 2.5rem;
+            border: 1px solid #e3e3e3;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.02);
+            text-align: center;
+        }
+        .footer-note p {
+            font-size: 1rem;
+            color: #3a3a3a;
+            margin-bottom: 0.3rem;
+        }
+        .footer-note .inline-link {
+            font-weight: 500;
+            color: #3f5b6e;
+            text-decoration: none;
+            border-bottom: 1px dotted #b0c4ce;
+            transition: border 0.2s, color 0.2s;
+        }
+        .footer-note .inline-link:hover {
+            border-bottom: 1px solid #3f5b6e;
+            color: #1c2c38;
+        }
+        .footer-note .foot-sub {
+            margin-top: 0.6rem;
+            color: #6f6f6f;
+            font-size: 0.9rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 650px) {
+            .hero { padding: 2rem 1.5rem; }
+            .hero h1 { font-size: 2rem; }
+            .bg-note, .faq-mini { padding: 1.5rem; }
+            .features-grid { gap: 1.2rem; }
+            .feature-card { flex: 1 1 100%; }
+            .footer-note { padding: 1.5rem; }
+        }
+        @media (max-width: 480px) {
+            body { padding: 1rem 0.8rem; }
+            .hero h1 { font-size: 1.6rem; padding-left: 0.8rem; }
+            .faq-mini .qa-item { flex-direction: column; gap: 0.2rem; }
+            .faq-mini .q-label { min-width: auto; }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- 首页横幅 hero -->
+    <div class="hero">
+        <h1>资料整理 · 信息索引</h1>
+        <div class="subhead">围绕「爱游戏体育」的内容梳理与背景记录</div>
+        <div class="tagline">杂志专题式 · 从资料角度出发</div>
+    </div>
+
+    <!-- 背景说明 -->
+    <div class="bg-note">
+        <h2>出发点与背景</h2>
+        <p>许多朋友在查找体育资讯时，会遇到信息分散、来源不一的情况。过去一段时间，我陆续收集了一些与体育内容相关的站点和页面，其中 <strong>爱游戏体育</strong> 作为一个出现频次较高的名称，经常被读者提及。这次整理并非官方介绍，更像是一份围绕该名称的资料索引记录。</p>
+        <p>专题的切入角度集中在“如何更清楚地归类与引用”——从信息可及性出发，而非推广或评价。下面的三个卡片分别从内容特征、常见场景和整理习惯三个侧面做了摘要。</p>
+    </div>
+
+    <!-- 三段自然介绍（卡片） -->
+    <div class="features-grid">
+        <div class="feature-card">
+            <h3><span>📋</span> 内容特征</h3>
+            <p>爱游戏体育所涉及的资讯以赛事动态、数据回顾和周边信息为主，内容结构偏向于对已有体育信息进行再组织。适合作为快速参考的来源之一。</p>
+            <div class="meta">索引标签 · 体育 · 资料</div>
+        </div>
+        <div class="feature-card">
+            <h3><span>🔍</span> 常用场景</h3>
+            <p>在日常浏览体育相关主题时，部分用户会将爱游戏体育作为信息对照的补充页面。尤其适合在整理赛历、队伍近况时，与其他渠道交叉阅读。</p>
+            <div class="meta">场景 · 信息对照 · 整理</div>
+        </div>
+        <div class="feature-card">
+            <h3><span>📁</span> 整理习惯</h3>
+            <p>我个人习惯把相关链接放入一个收藏夹，并在笔记里简单标注资料日期和主题。这样无论过多久回头查阅，都能快速找到原始出处。</p>
+            <div class="meta">工作流 · 笔记 · 回溯</div>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 / 常见疑问 -->
+    <div class="faq-mini">
+        <h4>❓ 整理过程中遇到的几个常见疑问</h4>
+        <div class="qa-item">
+            <span class="q-label">Q: 准确吗？</span>
+            <span class="a-text">任何二手信息都有时效性，建议同时参考多个来源。爱游戏体育的内容可作为一条线索，但不要作为唯一依据。</span>
+        </div>
+        <div class="qa-item">
+            <span class="q-label">Q: 如何访问？</span>
+            <span class="a-text">直接通过浏览器访问网站即可。下面的提示区里有一个指向 <a href="https://portal-zhcn-ayx.com" class="inline-link" style="border-bottom:1px dotted #b0c4ce; text-decoration:none; color:#3f5b6e;">爱游戏体育</a> 的链接，属于资料索引的一部分。</span>
+        </div>
+        <div class="qa-item">
+            <span class="q-label">Q: 收录原则</span>
+            <span class="a-text">仅整理公开可查的信息，不包含任何推广或诱导内容。目的是让感兴趣的人自己判断和探索。</span>
+        </div>
+    </div>
+
+    <!-- 页尾访问提示 -->
+    <div class="footer-note">
+        <p>如果你在梳理体育资讯时需要一个参考坐标，可以将 <a href="https://portal-zhcn-ayx.com" class="inline-link">爱游戏体育</a> 加入你的信息列表。</p>
+        <p class="foot-sub">本页为资料索引专题 · 内容仅供个人整理参考 · 保持开放与审慎</p>
+    </div>
+
+</div>
+</body>
+</html>
